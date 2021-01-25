@@ -17,14 +17,20 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.button4.setOnClickListener {
+            intent.putExtra(CATEGORY_NAME, getString(R.string.appetizer))
+            Toast.makeText(applicationContext, "appetizer", Toast.LENGTH_LONG).show()
             statCategoryActivity(ItemType.STARTER)
         }
 
         binding.button6.setOnClickListener {
+            intent.putExtra(CATEGORY_NAME, getString(R.string.main_course))
+            Toast.makeText(applicationContext, "main_course", Toast.LENGTH_LONG).show()
             statCategoryActivity(ItemType.MAIN)
         }
 
         binding.button7.setOnClickListener {
+            intent.putExtra(CATEGORY_NAME, getString(R.string.dessert))
+            Toast.makeText(applicationContext, "dessert", Toast.LENGTH_LONG).show()
             statCategoryActivity(ItemType.DESSERT)
         }
 

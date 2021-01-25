@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TDAndroidSAUMIERSophie">
         <activity android:name=".CategoryActivity"></activity>
-        <activity android:name=".Appetizer" />
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
