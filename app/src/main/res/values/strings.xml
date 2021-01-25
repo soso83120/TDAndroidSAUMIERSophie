@@ -3,4 +3,7 @@
     <string name="button">button1</string>
     <string name="button2">button2</string>
     <string name="button3">button</string>
+    <string name="appetizer">Appetizer</string>
+    <string name="main_course">Main course</string>
+    <string name="dessert">Dessert</string>
 </resources>

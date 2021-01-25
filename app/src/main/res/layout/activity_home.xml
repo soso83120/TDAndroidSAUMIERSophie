@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:backgroundTint="#00D14848"
+    android:backgroundTint="@color/white"
     tools:context=".HomeActivity">
 
     <EditText
@@ -27,23 +27,25 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="Appetizer"
+        android:backgroundTint="@color/black"
+        android:backgroundTintMode="add"
+        android:text="@string/appetizer"
         android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
+        android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.88"
-        app:rippleColor="#FFFFFF" />
+        app:rippleColor="@color/black" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Main course"
+        android:backgroundTint="@color/black"
+        android:text="@string/main_course"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +68,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Dessert"
+        android:backgroundTint="@color/black"
+        android:text="@string/dessert"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
