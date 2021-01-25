@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tdandroidsaumiersophie.CategoryAdapter
 import com.example.tdandroidsaumiersophie.databinding.ActivityCategoryBinding
 
 enum class ItemType {
@@ -20,9 +22,15 @@ class CategoryActivity : AppCompatActivity() {
 
         val selectedItem= intent.getSerializableExtra(HomeActivity.CATEGORY_NAME) as? ItemType
         binding.categoryTitle.text= getCategoryTitle(selectedItem)
-
+        loadList()
 
         Log.d("lifecycle", "onCreate")
+    }
+    private fun loadList() {
+        var entries = listOf<String>("salade", "boeuf", "glace")
+        val adapter = CategoryAdapter(entries)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = adapter
     }
     private fun getCategoryTitle(item: ItemType?): String {
         return when(item) {
