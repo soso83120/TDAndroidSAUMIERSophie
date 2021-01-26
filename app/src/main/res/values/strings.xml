@@ -6,4 +6,5 @@
     <string name="appetizer">Appetizer</string>
     <string name="main_course">Main course</string>
     <string name="dessert">Dessert</string>
+    <string name="image">image</string>
 </resources>

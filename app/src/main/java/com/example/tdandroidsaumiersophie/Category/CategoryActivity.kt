@@ -8,17 +8,32 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.android.volley.Response
 import com.example.tdandroidsaumiersophie.*
+import com.android.volley.toolbox.StringRequest
 import com.example.tdandroidsaumiersophie.databinding.ActivityCategoryBinding
 import com.example.tdandroidsaumiersophie.network.HomeActivity
 import com.example.tdandroidsaumiersophie.network.MenuResult
 import com.example.tdandroidsaumiersophie.network.NetworkConstant
+import com.example.tdandroidsaumiersophie.Category.CategoryActivity
+import com.example.tdandroidsaumiersophie.Category.CategoryAdapter
+import com.example.tdandroidsaumiersophie.network.Dish
 import com.google.gson.GsonBuilder
 import org.json.JSONObject
 
 
 enum class ItemType {
-    STARTER, MAIN, DESSERT
+    STARTER, MAIN, DESSERT;
+    companion object {
+        fun categoryTitle(item: ItemType?) : String {
+            return when(item) {
+                STARTER -> "Entrées"
+                MAIN -> "Plats"
+                DESSERT -> "Desserts"
+                else -> ""
+            }
+        }
+    }
 }
 class CategoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCategoryBinding
@@ -29,13 +44,14 @@ class CategoryActivity : AppCompatActivity() {
 
 
         val selectedItem= intent.getSerializableExtra(HomeActivity.CATEGORY_NAME) as? ItemType
+
         binding.categoryTitle.text= getCategoryTitle(selectedItem)
-        //loadList()
-        makeRequest()
+
+        makeRequest(selectedItem)
         Log.d("lifecycle", "onCreate")
     }
 
-    private fun makeRequest() {
+    private fun makeRequest(selectedItem: ItemType?) {
         val queue = Volley.newRequestQueue(this)
         val url = NetworkConstant.BASE_URL + NetworkConstant.PATH_MENU
 
@@ -47,11 +63,9 @@ class CategoryActivity : AppCompatActivity() {
             url,
             jsonData,
             { response ->
-                Log.d("request", response.toString(2))
                 val menuResult = GsonBuilder().create().fromJson(response.toString(), MenuResult::class.java)
-                menuResult.data.forEach {
-                    Log.d("request", it.name)
-                }
+                val items = menuResult.data.firstOrNull { it.name == ItemType.categoryTitle(selectedItem) }
+                loadList(items?.items)
             },
             { error ->
                 error.message?.let {
@@ -61,6 +75,7 @@ class CategoryActivity : AppCompatActivity() {
                 }
             }
         )
+        queue.add(request)
 
         /*
 // Request a string response from the provided URL.
@@ -77,24 +92,20 @@ class CategoryActivity : AppCompatActivity() {
 // Add the request to the RequestQueue.
         queue.add(request)
     }
-    private fun loadList() {
-        var entries = listOf<String>("salade", "boeuf", "glace")
-        val adapter =
-            CategoryAdapter(entries)
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = adapter
+    private fun loadList(dishes: List<Dish>?) {
+        dishes?.let {
+            val adapter = CategoryAdapter(it) { dish ->
+                Log.d("dish", "selected dish ${dish.name}")
+            }
+            binding.recyclerView.layoutManager = LinearLayoutManager(this)
+            binding.recyclerView.adapter = adapter
+        }
     }
     private fun getCategoryTitle(item: ItemType?): String {
         return when(item) {
-            ItemType.STARTER -> getString(
-                R.string.appetizer
-            )
-            ItemType.MAIN -> getString(
-                R.string.main_course
-            )
-            ItemType.DESSERT -> getString(
-                R.string.dessert
-            )
+            ItemType.STARTER -> getString(R.string.appetizer)
+            ItemType.MAIN -> getString(R.string.main_course)
+            ItemType.DESSERT -> getString(R.string.dessert)
             else -> ""
         }
     }
