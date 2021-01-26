@@ -1,4 +1,4 @@
-package com.example.tdandroidsaumiersophie
+package com.example.tdandroidsaumiersophie.Category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,9 @@ import com.example.tdandroidsaumiersophie.databinding.DishesCellBinding
 
 class CategoryAdapter(private val entries: List<String>): RecyclerView.Adapter<CategoryAdapter.DishesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishesViewHolder {
-        return DishesViewHolder(DishesCellBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return DishesViewHolder(
+            DishesCellBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: DishesViewHolder, position: Int) {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:backgroundTint="@color/white"
-    tools:context=".HomeActivity">
+    tools:context=".network.HomeActivity">
 
     <EditText
         android:id="@+id/editTextTextPersonName"
