@@ -24,6 +24,7 @@ class CategoryAdapter(private val entries: List<Dish>,
             entryClickListener.invoke(dish)
         }
         holder.bind(dish)
+
     }
 
     override fun getItemCount(): Int {
@@ -46,5 +47,6 @@ class CategoryAdapter(private val entries: List<Dish>,
             }
             Picasso.get().load(url).placeholder(com.example.tdandroidsaumiersophie.R.drawable.imagerestaurant).into(imageView)
         }
+
     }
 }
