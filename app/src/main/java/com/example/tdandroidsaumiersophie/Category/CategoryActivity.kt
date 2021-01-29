@@ -1,6 +1,7 @@
 package com.example.tdandroidsaumiersophie.Category
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,12 +14,9 @@ import com.android.volley.Response
 import com.example.tdandroidsaumiersophie.*
 import com.android.volley.toolbox.StringRequest
 import com.example.tdandroidsaumiersophie.databinding.ActivityCategoryBinding
-import com.example.tdandroidsaumiersophie.network.HomeActivity
-import com.example.tdandroidsaumiersophie.network.MenuResult
-import com.example.tdandroidsaumiersophie.network.NetworkConstant
 import com.example.tdandroidsaumiersophie.Category.CategoryActivity
 import com.example.tdandroidsaumiersophie.Category.CategoryAdapter
-import com.example.tdandroidsaumiersophie.network.Dish
+import com.example.tdandroidsaumiersophie.network.*
 import com.google.gson.GsonBuilder
 import org.json.JSONObject
 
@@ -118,7 +116,9 @@ class CategoryActivity : AppCompatActivity() {
     private fun loadList(dishes: List<Dish>?) {
         dishes?.let {
             val adapter = CategoryAdapter(it) { dish ->
-                Log.d("dish", "selected dish ${dish.name}")
+                val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.DISH_EXTRA, dish)
+                startActivity(intent)
             }
             binding.recyclerView.layoutManager = LinearLayoutManager(this)
             binding.recyclerView.adapter = adapter
@@ -154,3 +154,5 @@ companion object {
 }
 
 }
+
+
