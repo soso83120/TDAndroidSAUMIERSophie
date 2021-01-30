@@ -10,12 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.android.volley.Response
 import com.example.tdandroidsaumiersophie.*
-import com.android.volley.toolbox.StringRequest
 import com.example.tdandroidsaumiersophie.databinding.ActivityCategoryBinding
-import com.example.tdandroidsaumiersophie.Category.CategoryActivity
-import com.example.tdandroidsaumiersophie.Category.CategoryAdapter
+import com.example.tdandroidsaumiersophie.detail.DetailActivity
 import com.example.tdandroidsaumiersophie.network.*
 import com.google.gson.GsonBuilder
 import org.json.JSONObject

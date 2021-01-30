@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TDAndroidSAUMIERSophie"
         android:usesCleartextTraffic="true">
-        <activity android:name=".network.DetailActivity"></activity>
+        <activity android:name=".detail.DetailActivity" />
         <activity android:name=".Category.CategoryActivity" />
         <activity android:name=".network.HomeActivity">
             <intent-filter>
