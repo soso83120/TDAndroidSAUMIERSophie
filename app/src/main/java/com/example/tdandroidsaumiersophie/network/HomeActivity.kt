@@ -10,7 +10,7 @@ import com.example.tdandroidsaumiersophie.R
 import com.example.tdandroidsaumiersophie.databinding.ActivityHomeBinding
 
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,5 +55,8 @@ class HomeActivity : AppCompatActivity() {
 
     companion object {
         const val CATEGORY_NAME = "CATEGORY_NAME"
+
+
+
     }
 }
