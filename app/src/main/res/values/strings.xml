@@ -12,5 +12,9 @@
     <string name="basket">le plat a été enregistré</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fname">Total</string>
+    <string name="sname">Total</string>
+    <string name="adress">Total</string>
+    <string name="email">Total</string>
 
 </resources>

@@ -55,6 +55,7 @@ class DetailActivity : BaseActivity() {
             refreshShop(dish)
         }
         binding.shopButton.setOnClickListener {
+           
             addToBasket(dish, itemCount)
         }
     }

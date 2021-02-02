@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TDAndroidSAUMIERSophie"
         android:usesCleartextTraffic="true">
-        <activity android:name=".basket.BasketActivity"></activity>
+        <activity android:name=".registre.RegisterActivity"></activity>
+        <activity android:name=".basket.BasketActivity" />
         <activity android:name=".detail.DetailActivity" />
         <activity android:name=".Category.CategoryActivity" />
         <activity android:name=".network.HomeActivity">

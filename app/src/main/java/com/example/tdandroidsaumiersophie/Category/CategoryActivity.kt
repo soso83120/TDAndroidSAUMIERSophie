@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.provider.FontsContractCompat.resetCache
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -14,6 +15,7 @@ import com.example.tdandroidsaumiersophie.*
 import com.example.tdandroidsaumiersophie.databinding.ActivityCategoryBinding
 import com.example.tdandroidsaumiersophie.detail.DetailActivity
 import com.example.tdandroidsaumiersophie.network.*
+import com.example.tdandroidsaumiersophie.utils.Loader
 import com.google.gson.GsonBuilder
 import org.json.JSONObject
 
@@ -40,7 +42,10 @@ class CategoryActivity : BaseActivity(){
 
 
         val selectedItem= intent.getSerializableExtra(HomeActivity.CATEGORY_NAME) as? ItemType
-
+        binding.swipeLayout.setOnRefreshListener {
+            resetCache()
+            makeRequest(selectedItem)
+        }
         binding.categoryTitle.text= getCategoryTitle(selectedItem)
         loadList(listOf<Dish>())
         makeRequest(selectedItem)
@@ -51,6 +56,9 @@ class CategoryActivity : BaseActivity(){
         resultFromCache()?.let{
             parseResult(it,selectedItem)
         }?: run {
+            val loader = Loader()
+            loader.show(this,"récupération enu")
+
             val queue = Volley.newRequestQueue(this)
             val url = NetworkConstant.BASE_URL + NetworkConstant.PATH_MENU
             val jsonData = JSONObject()
@@ -61,11 +69,15 @@ class CategoryActivity : BaseActivity(){
                 url,
                 jsonData,
                 { response ->
+                    loader.hide(this)
+                    binding.swipeLayout.isRefreshing=false
                     val menuResult = GsonBuilder().create().fromJson(response.toString(), MenuResult::class.java)
                     val items = menuResult.data.firstOrNull { it.name == ItemType.categoryTitle(selectedItem) }
                     loadList(items?.items)
                 },
                 { error ->
+                    loader.hide(this)
+                    binding.swipeLayout.isRefreshing=false
                     error.message?.let {
                         Log.d("request", it)
                     } ?: run {
@@ -101,6 +113,12 @@ class CategoryActivity : BaseActivity(){
         editor.putString(REQUEST_CACHE,response)
         editor.apply()
     }
+    private fun resetCache() {
+        val sharedPreferences = getSharedPreferences(USER_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.remove(REQUEST_CACHE)
+        editor.apply()
+    }
     private fun resultFromCache():String?{
         val sharedPreferences=getSharedPreferences(USER_PREFERENCES_NAME, Context.MODE_PRIVATE)
         return sharedPreferences.getString(REQUEST_CACHE,null)
@@ -117,8 +135,8 @@ class CategoryActivity : BaseActivity(){
                 intent.putExtra(DetailActivity.DISH_EXTRA, dish)
                 startActivity(intent)
             }
-            binding.recyclerView.layoutManager = LinearLayoutManager(this)
-            binding.recyclerView.adapter = adapter
+            binding.basketRecyclerView.layoutManager = LinearLayoutManager(this)
+            binding.basketRecyclerView.adapter = adapter
         }
     }
     private fun getCategoryTitle(item: ItemType?): String {
