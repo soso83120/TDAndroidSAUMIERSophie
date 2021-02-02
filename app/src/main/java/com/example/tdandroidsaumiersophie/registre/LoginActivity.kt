@@ -2,6 +2,7 @@ package com.example.tdandroidsaumiersophie.registre
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,11 +11,13 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.tdandroidsaumiersophie.R
+import com.example.tdandroidsaumiersophie.basket.BasketActivity
 import com.example.tdandroidsaumiersophie.databinding.ActivityLoginBinding
 import com.example.tdandroidsaumiersophie.databinding.ActivityRegisterBinding
 import com.example.tdandroidsaumiersophie.network.Neworkconst
 import com.example.tdandroidsaumiersophie.network.RegisterResult
 import com.example.tdandroidsaumiersophie.network.User
+import com.example.tdandroidsaumiersophie.utils.Loader
 import com.google.gson.GsonBuilder
 import org.json.JSONObject
 
@@ -31,6 +34,9 @@ class LoginActivity : AppCompatActivity() {
         binding.buttonLoginaccount.setOnClickListener {
             if(verifyInformations()) {
                 launchRequest()
+                //return to Basket
+                val intent = Intent(this, BasketActivity::class.java)
+                startActivityForResult(intent, RegisterActivity.REQUEST_CODE)
             } else {
                 Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_LONG).show()
             }
@@ -40,6 +46,8 @@ class LoginActivity : AppCompatActivity() {
     fun launchRequest() {
         val queue = Volley.newRequestQueue(this)
         val url = Neworkconst.BASE_URL + Neworkconst.PATH_LOGIN
+        val loader = Loader()
+        loader.show(this,"récupération enu")
 
         val jsonData = JSONObject()
         jsonData.put(Neworkconst.ID_SHOP, "1")
@@ -51,10 +59,12 @@ class LoginActivity : AppCompatActivity() {
             url,
             jsonData,
             { response ->
+                loader.hide(this)
                 val userResult = GsonBuilder().create().fromJson(response.toString(), RegisterResult::class.java)
                 saveUser(userResult.data)
             },
             { error ->
+                loader.hide(this)
                 error.message?.let {
                     Log.d("request", it)
                 } ?: run {
