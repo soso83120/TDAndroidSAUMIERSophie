@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tdandroidsaumiersophie.R
 import com.example.tdandroidsaumiersophie.databinding.ActivityBasketBinding
+import com.example.tdandroidsaumiersophie.detail.DetailActivity
+import com.example.tdandroidsaumiersophie.network.Neworkconst
 import com.example.tdandroidsaumiersophie.registre.RegisterActivity
 
 lateinit var binding: ActivityBasketBinding
@@ -40,12 +42,29 @@ class BasketActivity : AppCompatActivity()/*, BasketCellInterface */{
         }
     }
 
+    /*override fun onDeleteItem(item: BasketItem) {
+        basket.items.remove(item)
+        basket.save(this)
+    }
+
+    override fun onShowDetail(item: BasketItem) {
+
+    }*/
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode== RegisterActivity.REQUEST_CODE){
-            //retour de l'activity register
-            // send order
+        if(requestCode == RegisterActivity.REQUEST_CODE) {
+            val sharedPreferences = getSharedPreferences(RegisterActivity.USER_PREFERENCES_NAME, Context.MODE_PRIVATE)
+            val idUser = sharedPreferences.getInt(RegisterActivity.ID_USER, -1)
+            if(idUser != -1) {
+                sendOrder(idUser)
+            }
         }
+    }
+
+    private fun sendOrder(idUser: Int) {
+        val message = basket.items.map { "${it.count}x ${it.dish.name}" }.joinToString("\n")
+        //basket.clear()
     }
 
     /*
