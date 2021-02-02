@@ -39,7 +39,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
         binding.buttonLogin.setOnClickListener{
-            val intetn = Intent(this, BasketActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivityForResult(intent,REQUEST_CODE)
         }
     }
