@@ -10,10 +10,8 @@ import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.tdandroidsaumiersophie.R
 import com.example.tdandroidsaumiersophie.basket.BasketActivity
 import com.example.tdandroidsaumiersophie.databinding.ActivityLoginBinding
-import com.example.tdandroidsaumiersophie.databinding.ActivityRegisterBinding
 import com.example.tdandroidsaumiersophie.network.Neworkconst
 import com.example.tdandroidsaumiersophie.network.RegisterResult
 import com.example.tdandroidsaumiersophie.network.User
@@ -24,30 +22,37 @@ import org.json.JSONObject
 
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity()
+{
     lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonLoginaccount.setOnClickListener {
-            if(verifyInformations()) {
+        binding.buttonLoginaccount.setOnClickListener{
+            if(verifyInformations())
+            {
                 launchRequest()
                 //return to Basket
                 val intent = Intent(this, BasketActivity::class.java)
                 startActivityForResult(intent, RegisterActivity.REQUEST_CODE)
-            } else {
-                Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_LONG).show()
+            }
+            else
+            {
+                Toast.makeText(this, "Enter all your information", Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    fun launchRequest() {
+    fun launchRequest()
+    {
+
         val queue = Volley.newRequestQueue(this)
         val url = Neworkconst.BASE_URL + Neworkconst.PATH_LOGIN
         val loader = Loader()
-        loader.show(this,"récupération enu")
+        loader.show(this,"It's coming ....")
 
         val jsonData = JSONObject()
         jsonData.put(Neworkconst.ID_SHOP, "1")
@@ -75,18 +80,22 @@ class LoginActivity : AppCompatActivity() {
         )
         queue.add(request)
     }
-
-    fun verifyInformations(): Boolean {
-        return (binding.email.text?.isNotEmpty() == true)
+    // verification des informations rentrées par l'utilisateur
+    fun verifyInformations(): Boolean
+    {
+        return (binding.email.text?.isNotEmpty() == true &&
+             binding.password.text?.count() ?: 0 >= 6)
     }
+    // sauvegarde de l'utilisateur
+    fun saveUser(user: User)
+    {
 
-    fun saveUser(user: User) {
         val sharedPreferences = getSharedPreferences(RegisterActivity.USER_PREFERENCES_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putInt(RegisterActivity.ID_USER, user.id)
         editor.apply()
-
-        setResult(Activity.RESULT_FIRST_USER)
+        setResult(Activity.RESULT_OK)
         finish()
     }
+
 }

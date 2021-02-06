@@ -1,8 +1,6 @@
 package com.example.tdandroidsaumiersophie.basket
 
 import android.content.Context
-import com.example.tdandroidsaumiersophie.databinding.ActivityBasketBinding
-import com.example.tdandroidsaumiersophie.detail.DetailActivity
 import com.example.tdandroidsaumiersophie.network.Dish
 import com.google.gson.GsonBuilder
 import java.io.File

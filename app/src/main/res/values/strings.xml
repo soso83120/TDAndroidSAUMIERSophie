@@ -16,5 +16,8 @@
     <string name="sname">Total</string>
     <string name="adress">Total</string>
     <string name="email">Total</string>
+    <string name="identifying">Identifying</string>
+    <string name="connection">Connection</string>
+    <string name="password">Password</string>
 
 </resources>

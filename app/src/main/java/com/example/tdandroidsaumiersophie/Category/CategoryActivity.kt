@@ -2,11 +2,9 @@ package com.example.tdandroidsaumiersophie.Category
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.core.provider.FontsContractCompat.resetCache
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -60,9 +58,9 @@ class CategoryActivity : BaseActivity(){
             loader.show(this,"récupération enu")
 
             val queue = Volley.newRequestQueue(this)
-            val url = NetworkConstant.BASE_URL + NetworkConstant.PATH_MENU
+            val url = Neworkconst.BASE_URL + Neworkconst.PATH_MENU
             val jsonData = JSONObject()
-            jsonData.put(NetworkConstant.ID_SHOP, "1")
+            jsonData.put(Neworkconst.ID_SHOP, "1")
 
             var request = JsonObjectRequest(
                 Request.Method.POST,
@@ -89,24 +87,8 @@ class CategoryActivity : BaseActivity(){
         }
 
 
-
-
-
-        /*
-// Request a string response from the provided URL.
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            Response.Listener<String> { response ->
-                // Display the first 500 characters of the response string.
-                Log.d("request", response)
-            },
-            Response.ErrorListener {
-                Log.d("request", "not working ${it.localizedMessage}")
-            })
-*/
-// Add the request to the RequestQueue.
-
     }
+
     private fun cacheResult(response: String){
         val sharedPreferences=getSharedPreferences(USER_PREFERENCES_NAME, Context.MODE_PRIVATE)
         val editor= sharedPreferences.edit()

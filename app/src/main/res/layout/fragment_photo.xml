@@ -7,15 +7,12 @@
     tools:context=".detail.PhotoFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/imagerestaurant" />
 
 </FrameLayout>

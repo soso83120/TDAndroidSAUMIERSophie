@@ -1,11 +1,8 @@
 package com.example.tdandroidsaumiersophie.detail
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
-import com.example.tdandroidsaumiersophie.Category.CategoryActivity
 import kotlin.math.max
 import com.example.tdandroidsaumiersophie.network.Dish
 import com.example.tdandroidsaumiersophie.R
@@ -13,11 +10,9 @@ import com.example.tdandroidsaumiersophie.basket.Basket
 import com.example.tdandroidsaumiersophie.basket.BasketItem
 import com.example.tdandroidsaumiersophie.databinding.ActivityDetailBinding
 import com.example.tdandroidsaumiersophie.network.BaseActivity
-import com.example.tdandroidsaumiersophie.network.HomeActivity
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.squareup.picasso.Picasso
+
 
 class DetailActivity : BaseActivity() {
     companion object {

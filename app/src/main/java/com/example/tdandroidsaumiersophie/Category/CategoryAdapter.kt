@@ -6,10 +6,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tdandroidsaumiersophie.network.Dish
-import com.example.tdandroidsaumiersophie.network.Price
 import com.squareup.picasso.Picasso
 import com.example.tdandroidsaumiersophie.databinding.DishesCellBinding
-import com.squareup.picasso.R
+
 
 class CategoryAdapter(private val entries: List<Dish>,
                       private val entryClickListener: (Dish) -> Unit)
