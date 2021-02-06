@@ -11,9 +11,10 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/linearbordertitle"
         android:hint="Create your Account Please"
         android:text="Create your Account Please"
-        android:textColor="@color/black"
+        android:textColor="@android:color/holo_orange_dark"
         android:textColorHint="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -63,7 +64,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/fname"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Family Name"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>

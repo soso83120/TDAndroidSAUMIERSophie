@@ -5,11 +5,13 @@
     android:id="@+id/CardViewMenu"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp">
+    android:layout_margin="20dp"
+    android:background="#00CCCC">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/linearbordertitle">
 
         <TextView
             android:id="@+id/dishName"
@@ -17,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/image"
+            android:textColor="@android:color/holo_orange_dark"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -39,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@android:color/holo_red_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.37"

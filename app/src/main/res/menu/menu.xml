@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/basket"
-        app:actionLayout="@layout/menu_basket"
         android:icon="@drawable/ic_cart"
         android:title="Item"
+        app:actionLayout="@layout/menu_basket"
         app:showAsAction="always" />
 </menu>

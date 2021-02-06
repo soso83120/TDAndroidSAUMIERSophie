@@ -11,7 +11,10 @@
         android:id="@+id/titreplat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/linearbordertitle"
         android:text="TextView"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textColorHint="@android:color/holo_orange_dark"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,6 +31,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:text="@string/textview"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -57,7 +62,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
         <ImageView
             android:id="@+id/more"
@@ -92,6 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/black"
+        android:hint="ADD TO BASKET"
         android:text="Button"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
