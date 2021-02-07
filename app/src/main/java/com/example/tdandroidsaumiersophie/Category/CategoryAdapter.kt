@@ -44,7 +44,7 @@ class CategoryAdapter(private val entries: List<Dish>,
                 url=dish.images[0]
 
             }
-            Picasso.get().load(url).placeholder(com.example.tdandroidsaumiersophie.R.drawable.imagerestaurant).into(imageView)
+            Picasso.get().load(url).placeholder(com.example.tdandroidsaumiersophie.R.drawable.ic_noavailable).into(imageView)
         }
 
     }

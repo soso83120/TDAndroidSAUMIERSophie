@@ -37,7 +37,7 @@ class PhotoFragment : Fragment() {
         val url = arguments?.getString(URL)
         // on vérifie qu'il y a une photo sinon on applique une image par défaut
         if(url?.isNotEmpty() == true){
-            Picasso.get().load(url).placeholder(R.drawable.imagerestaurant).into(binding.imageView3)
+            Picasso.get().load(url).placeholder(R.drawable.ic_noavailable).into(binding.imageView3)
         }
 
     }

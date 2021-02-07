@@ -11,8 +11,8 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="251dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/imagerestaurant" />
+        app:srcCompat="@drawable/ic_noavailable" />
 
 </FrameLayout>
